@@ -1,0 +1,17 @@
+sudo useradd -u 7784 -d /usr/local/meshtastic meshtastic
+sudo usermod -aG meshtastic ${USER}
+sudo -u ${USER} groups
+
+sudo mkdir /usr/local/meshtastic/
+sudo chmod meshtastic:meshtastic /usr/local/meshtastic/
+sudo chown meshtastic:meshtastic /usr/local/meshtastic/
+
+sudo -u meshtastic python3 -m venv --prompt meshtastic /usr/local/meshtastic
+
+sudo -u meshtastic /usr/local/meshtastic/bin/pip3 install --upgrade meshtastic
+sudo -u meshtastic /usr/local/meshtastic/bin/pip3 install --upgrade esptool
+
+sudo ln -sf /usr/local/meshtastic/bin/meshtastic /usr/local/bin/meshtastic
+sudo ln -sf /usr/local/meshtastic/bin/esptool.py /usr/local/bin/esptool
+
+meshtastic --version; esptool version

@@ -1,3 +1,8 @@
+body {
+  background-color: #000605;
+  color: #b7d7bd;
+}
+
 .nodes .stats {
   margin: 5px 0px;
   padding: 10px;
