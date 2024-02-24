@@ -1,0 +1,62 @@
+# 
+sudo apt install python3-venv
+
+# make a working area for meshtastic and flashing
+mkdir -p ~/dev/meshtastic
+
+# setup a python virtual environment that is indepenant from th system installed environment avoiding a version of dll hell
+python3 -m venv --prompt meshpython ~/dev/meshtastic/.python
+
+# activate virtual environment
+source ~/dev/meshtastic/.python/bin/activate
+
+# install meshtastic cli as it can be useful 
+python3 -m pip install meshtastic
+
+# test meshtastic runs
+python3 -m meshtastic --version
+# output looks like:-
+# 2.2.22
+
+# install the esptool needed by meshtastic flashing scripts device-install.sh and device-update.sh
+python3 -m pip install esptool
+
+# test esptool runs
+python3 -m esptool version
+# output looks like:-
+# esptool.py v4.7.0
+# 4.7.0
+
+
+
+# pre setup done, now we can download formware and flash
+
+# move into the working space
+cd ~/dev/meshtastic
+
+# get the firmware bundle
+wget https://github.com/meshtastic/firmware/releases/download/v2.2.23.5672e68/firmware-2.2.23.5672e68.zip
+
+unzip the bundle into a sub working area, in this case 2.2.23
+unzip firmware-2.2.23.5672e68.zip -d 2.2.23
+
+# move into sub working area
+cd 2.2.23
+
+# activate virtual environment, is it is not active.
+source ~/dev/meshtastic/.python/bin/activate
+
+# update firmware
+./device-update.sh firmware-heltec-v3-2.2.23.5672e68-update.bin
+
+# or wipe and full install firmware
+./device-install.sh firmware-heltec-v3-2.2.23.5672e68.bin
+
+
+# get device info
+meshtastic --info
+
+
+
+# when done
+deactivate

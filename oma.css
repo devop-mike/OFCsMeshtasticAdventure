@@ -1,0 +1,31 @@
+.nodes .stats {
+  margin: 5px 0px;
+  padding: 10px;
+  padding-right: 25px;
+  background-color: black;
+  color: #207719;
+  width: fit-content;
+  display: grid;
+}
+
+.nodes .stats .row {
+  display: contents;
+}
+
+.snip {
+  margin: 5px 0px;
+  padding: 10px;
+  padding-right: 25px;
+  background-color: black;
+  color: #207719;
+  width: fit-content;
+}
+
+.installnotes .code.snip {
+  margin: 5px 0px;
+  padding: 10px;
+  padding-right: 25px;
+  background-color: black;
+  color: #c19a30;
+  width: fit-content;
+}
