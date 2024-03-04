@@ -3,18 +3,48 @@ body {
   color: #b7d7bd;
 }
 
+.nodes {
+  background-color: black;
+  padding: 2px;
+}
+
 .nodes .stats {
   margin: 5px 0px;
-  padding: 10px;
-  padding-right: 25px;
-  background-color: black;
+  padding: 2px;
+  background-color: #000400;
   color: #207719;
   width: fit-content;
   display: grid;
+  grid-gap: 2px;
 }
 
 .nodes .stats .row {
   display: contents;
+}
+
+.nodes .stats .row>* {
+  background-color: black;
+  padding: 2px;
+}
+
+.nodes .stats .row :nth-child(5) {
+  text-align: right;
+}
+
+.nodes .stats .row :nth-child(7) {
+  text-align: right;
+}
+
+.nodes .stats .row :nth-child(8) {
+  text-align: right;
+}
+
+.nodes .stats .row :nth-child(9) {
+  text-align: right;
+}
+
+.nodes .stats .row :nth-child(10) {
+  text-align: right;
 }
 
 .snip {

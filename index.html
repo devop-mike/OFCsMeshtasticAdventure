@@ -9,8 +9,7 @@
   <link href="oma.css" rel="stylesheet" type="text/css" />
   <style>
     .nodes .stats {
-      grid-template-columns: repeat(10, auto);
-      grid-gap: 6px
+      grid-template-columns: repeat(11, auto);
     }
   </style>
 </head>
@@ -52,8 +51,17 @@
           window.location.href = $(elem).attr("data-target");
         });
       });
-      function ago(refNode, selNode) {
-        secs = refNode.lastHeard - selNode.lastHeard;
+      function clean(val) {
+        if (val == undefined) { return '' }
+        return val;
+      }
+      function asDate(timestamp) {
+        let d = new Date(timestamp * 1000);
+        return d.toISOString().substr(0, 19).replace('T', ' ');
+      }
+      function timeAgo(timestamp) {
+        secs = Math.floor(Date.now() / 1000) - (timestamp);
+        if (secs > 86400 * 2.5) { return Math.floor(secs / 86400) + ' days' }
         if (secs > 3600 * 2) { return Math.floor(secs / 3600) + ' hours' }
         if (secs > 60 * 2) { return Math.floor(secs / 60) + ' mins' }
         if (secs > 0) { return secs + ' secs' }
@@ -69,7 +77,8 @@
           html += '<div>hwModel</div>';
           html += '<div>role</div>';
           html += '<div>snr</div>';
-          html += '<div>ago</div>';
+          html += '<div>lastHeard</div>';
+          html += '<div>timeAgo</div>';
           html += '<div>batteryLevel</div>';
           html += '<div>voltage</div>';
           html += '<div>channelUtilization</div>';
@@ -80,12 +89,13 @@
             html += '<div>' + nodes[node].user.shortName + '</div>';
             html += '<div>' + nodes[node].user.longName + '</div>';
             html += '<div>' + nodes[node].user.hwModel + '</div>';
-            html += '<div>' + nodes[node].user.role + '</div>';
-            html += '<div>' + nodes[node].snr + '</div>';
-            html += '<div>' + ago(nodes['!a3c8cf4c'], nodes[node]) + '</div>';
+            html += '<div>' + clean(nodes[node].user.role) + '</div>';
+            html += '<div>' + clean(nodes[node].snr) + '</div>';
+            html += '<div>' + asDate(nodes[node].lastHeard) + '</div>';
+            html += '<div>' + timeAgo(nodes[node].lastHeard) + '</div>';
             html += '<div>' + nodes[node].deviceMetrics.batteryLevel + '</div>';
             html += '<div>' + nodes[node].deviceMetrics.voltage + '</div>';
-            html += '<div>' + nodes[node].deviceMetrics.channelUtilization + '</div>';
+            html += '<div>' + clean(nodes[node].deviceMetrics.channelUtilization) + '</div>';
             html += '<div>' + nodes[node].deviceMetrics.airUtilTx + '</div>';
             html += '</div>';
           }
