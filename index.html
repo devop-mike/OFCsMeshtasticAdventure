@@ -38,72 +38,8 @@
     </div>
   </div>
 
-
-
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" type="text/javascript"></script>
-  <script>
-    $(document).ready(() => {
-      $(".snip").each((_, elem) => {
-        $(elem).load($(elem).attr("data-target"));
-      });
-      $(".code.snip").each((_, elem) => {
-        $(elem).click(() => {
-          window.location.href = $(elem).attr("data-target");
-        });
-      });
-      function clean(val) {
-        if (val == undefined) { return '' }
-        return val;
-      }
-      function asDate(timestamp) {
-        let d = new Date(timestamp * 1000);
-        return d.toISOString().substr(0, 19).replace('T', ' ');
-      }
-      function timeAgo(timestamp) {
-        secs = Math.floor(Date.now() / 1000) - (timestamp);
-        if (secs > 86400 * 2.5) { return Math.floor(secs / 86400) + ' days' }
-        if (secs > 3600 * 2) { return Math.floor(secs / 3600) + ' hours' }
-        if (secs > 60 * 2) { return Math.floor(secs / 60) + ' mins' }
-        if (secs > 0) { return secs + ' secs' }
-        if (secs > -1) { return secs + ' secs' }
-        return '';
-      }
-      $(".nodes .stats").each((_, elem) => {
-        $.get($(elem).attr("data-target"), (nodes) => {
-          html = '';
-          html += '<div class="row">';
-          html += '<div>shortName</div>';
-          html += '<div>longName</div>';
-          html += '<div>hwModel</div>';
-          html += '<div>role</div>';
-          html += '<div>snr</div>';
-          html += '<div>lastHeard</div>';
-          html += '<div>timeAgo</div>';
-          html += '<div>batteryLevel</div>';
-          html += '<div>voltage</div>';
-          html += '<div>channelUtilization</div>';
-          html += '<div>airUtilTx</div>';
-          html += '</div>';
-          for (node in nodes) {
-            html += '<div class="row">';
-            html += '<div>' + nodes[node].user.shortName + '</div>';
-            html += '<div>' + nodes[node].user.longName + '</div>';
-            html += '<div>' + nodes[node].user.hwModel + '</div>';
-            html += '<div>' + clean(nodes[node].user.role) + '</div>';
-            html += '<div>' + clean(nodes[node].snr) + '</div>';
-            html += '<div>' + asDate(nodes[node].lastHeard) + '</div>';
-            html += '<div>' + timeAgo(nodes[node].lastHeard) + '</div>';
-            html += '<div>' + nodes[node].deviceMetrics.batteryLevel + '</div>';
-            html += '<div>' + nodes[node].deviceMetrics.voltage + '</div>';
-            html += '<div>' + clean(nodes[node].deviceMetrics.channelUtilization) + '</div>';
-            html += '<div>' + nodes[node].deviceMetrics.airUtilTx + '</div>';
-            html += '</div>';
-          }
-          $(elem).html(html)
-        });
-      });
-    });
-  </script>
+  <script src="index.js" type="text/javascript"></script>
 </body>
 
 </html>

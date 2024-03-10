@@ -3,8 +3,13 @@ body {
   color: #b7d7bd;
 }
 
+.title {
+  font-family: 'Segoe UI';
+  font-size: 25px;
+}
+
 .nodes {
-  background-color: black;
+  /* background-color: black; */
   padding: 2px;
 }
 
@@ -16,6 +21,8 @@ body {
   width: fit-content;
   display: grid;
   grid-gap: 2px;
+  font-family: Tahoma;
+  font-size: 20px;
 }
 
 .nodes .stats .row {
