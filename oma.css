@@ -22,7 +22,7 @@ body {
   display: grid;
   grid-gap: 2px;
   font-family: Tahoma;
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 
 .nodes .stats .row {
@@ -32,6 +32,18 @@ body {
 .nodes .stats .row>* {
   background-color: black;
   padding: 2px;
+}
+
+.nodes .stats .row.header :nth-child(8) {
+  max-width: min-content;
+}
+
+.nodes .stats .row.header :nth-child(9) {
+  max-width: min-content;
+}
+
+.nodes .stats .row.header :nth-child(11) {
+  max-width: min-content;
 }
 
 .nodes .stats .row :nth-child(5) {
@@ -51,6 +63,14 @@ body {
 }
 
 .nodes .stats .row :nth-child(10) {
+  text-align: right;
+}
+
+.nodes .stats .row :nth-child(11) {
+  text-align: right;
+}
+
+.nodes .stats .row :nth-child(12) {
   text-align: right;
 }
 
