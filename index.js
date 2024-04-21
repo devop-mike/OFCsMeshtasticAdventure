@@ -18,7 +18,7 @@ $(document).ready(() => {
   function asDate(timestamp) {
     if (timestamp == undefined) { return '' }
     let d = new Date(timestamp * 1000);
-    return d.toISOString().substr(0, 19).replace('T', ' ');
+    return d.toISOString().substring(0, 19).replace('T', ' ');
   }
   function timeAgo(timestamp) {
     if (timestamp == undefined) { return '' }
