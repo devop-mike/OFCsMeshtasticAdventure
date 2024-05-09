@@ -5,7 +5,7 @@ body {
 
 .title {
   font-family: 'Segoe UI';
-  font-size: 25px;
+  font-size: 1.6rem;
 }
 
 .nodes {
@@ -22,7 +22,6 @@ body {
   display: grid;
   grid-gap: 2px;
   font-family: Tahoma;
-  /* font-size: 20px; */
 }
 
 .nodes .stats .row {
@@ -32,6 +31,12 @@ body {
 .nodes .stats .row>* {
   background-color: black;
   padding: 2px;
+}
+
+.nodes .stats .row.header>* {
+  font-size: 1.1rem;
+  border-top: 2px solid #24871d;
+  border-bottom: 2px solid #24871d;
 }
 
 .nodes .stats .row.header :nth-child(8) {

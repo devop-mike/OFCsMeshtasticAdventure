@@ -49,12 +49,13 @@ $(document).ready(() => {
       + '';
   }
   function formatrow(node) {
-    // console.log(node.user.shortName);
+    // console.log(node);
+    if (!node.user) { node.user = { shortName: '!' + node.num.toString(16), longName: node.num } }
     if (!node.deviceMetrics) { node.deviceMetrics = {} }
     let html = '<div class="row">';
-    html += '<div>' + node.user.shortName + '</div>';
-    html += '<div>' + node.user.longName + '</div>';
-    html += '<div>' + node.user.hwModel + '</div>';
+    html += '<div>' + clean(node.user.shortName) + '</div>';
+    html += '<div>' + clean(node.user.longName) + '</div>';
+    html += '<div>' + clean(node.user.hwModel) + '</div>';
     html += '<div>' + clean(node.user.role) + '</div>';
     html += '<div>' + clean(node.snr) + '</div>';
     html += '<div>' + asDate(node.lastHeard) + '</div>';
@@ -70,7 +71,7 @@ $(document).ready(() => {
   $(".nodes .stats").each((_, elem) => {
     $.get($(elem).attr("data-target"), (nodes) => {
       let html = header();
-      for (const [key, node] of Object.entries(nodes).toSorted((a, b) => (b[1].lastHeard ?? 0) - (a[1].lastHeard ?? 0))) {
+      for (node of nodes.toSorted((a, b) => (b.lastHeard ?? 0) - (a.lastHeard ?? 0))) {
         html += formatrow(node);
       }
       $(elem).html(html)
